@@ -35,5 +35,18 @@ func (b *Board) check() string {
 			return "yes"
 		}
 	}
+	token = b.get(0, 0)
+	if token == b.get(1, 1) && token == b.get(2, 2) {
+		return "yes"
+	token = b.get(2, 0)
+	if token == b.get(1, 1) && token == b.get(0, 2) {
+		return "yes"
+	
 	return "no"
 }
+
+
+// 縦の値の積が０だった場合ー＞その列に空きがあるため勝負は続く
+// 積が0ではなくかつ縦の値が3もしくは-3だった場合勝負がついたと知らせる
+// ななめは２通りを条件分岐で調べる
+
