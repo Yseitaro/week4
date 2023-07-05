@@ -20,3 +20,12 @@ func (b *Board) get(x, y int) string {
 	}
 	return "*"
 }
+
+func (b *Board) check() string {
+	var token string
+	token = b.get(0, 0)
+	if token == b.get(1, 0) && token == b.get(2, 0) {
+		return "yes"
+	}
+	return "no"
+}

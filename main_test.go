@@ -23,3 +23,15 @@ func TestPutToken02(t *testing.T) {
 		t.Errorf("Mistake")
 	}
 }
+
+func TestCheck01(t *testing.T) {
+	b := &Board{
+		tokens: []int{0, 0, 0, 0, 0, 0, 0, 0, 0},
+	}
+	b.put(0, 0, "o")
+	b.put(1, 0, "o")
+	b.put(2, 0, "o")
+	if b.check() != "yes" {
+		t.Errorf("Mistake")
+	}
+}
