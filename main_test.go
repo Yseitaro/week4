@@ -55,9 +55,9 @@ func TestCheck03(t *testing.T) {
 	b := &Board{
 		tokens: []int{0, 0, 0, 0, 0, 0, 0, 0, 0},
 	}
-	b.put(1, 0, "x")
+	b.put(0, 0, "x")
 	b.put(0, 1, "o")
-	b.put(2, 2, "x")
+	b.put(0, 2, "x")
 	if b.check() != "no" {
 		t.Errorf("Mistake")
 	}
