@@ -20,3 +20,33 @@ func (b *Board) get(x, y int) string {
 	}
 	return "*"
 }
+
+func (b *Board) check() string {
+	var token string
+	for y := 0; y < 3; y++ {
+		token = b.get(0, y)
+		if token == b.get(1, y) && token == b.get(2, y) {
+			return "yes"
+		}
+	}
+	for x := 0; x < 3; x++ {
+		token = b.get(x, 0)
+		if token == b.get(x, 1) && token == b.get(x, 2) {
+			return "yes"
+		}
+	}
+	token = b.get(0, 0)
+	if token == b.get(1, 1) && token == b.get(2, 2) {
+		return "yes"
+	token = b.get(2, 0)
+	if token == b.get(1, 1) && token == b.get(0, 2) {
+		return "yes"
+	
+	return "no"
+}
+
+
+// 縦の値の積が０だった場合ー＞その列に空きがあるため勝負は続く
+// 積が0ではなくかつ縦の値が3もしくは-3だった場合勝負がついたと知らせる
+// ななめは２通りを条件分岐で調べる
+
