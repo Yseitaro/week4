@@ -75,3 +75,14 @@ func TestCheck04(t *testing.T) {
 		t.Errorf("Mistake")
 	}
 }
+
+
+func TestPutToken05(t *testing.T) {
+	b := &Board{
+		tokens: []int{0, 0, 0, 0, 0, 0, 0, 0, 0},
+	}
+	b.put(0, 2, "x")
+	b.put(1, 1, "x")
+	b.put(2, 0, "x")
+	b.print()
+}
