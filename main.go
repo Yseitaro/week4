@@ -67,3 +67,67 @@ func (b *Board) scanput() {
 	fmt.Scanf("%d %d %s", &x, &y, &s)
 	b.put(x, y, s)
 }
+
+// 毎ターン終了後、現在操作しているプレイヤーを切り替える
+func switchPlayer() {
+	if currentPlayer == player1 {
+		currentPlayer = player2
+	} else {
+		currentPlayer = player1
+	}
+}
+
+func getPlayerNumber(player string) int {
+	if player == player1 {
+		return 1
+	} else {
+		return 2
+	}
+}
+
+// 入力が正当かどうかを判断する
+// x、yの入力値は0～2
+// この位置が"-"（未入力状態）でない場合、入力は無効である。
+func validMove(x, y int) bool {
+	if x < 0 || x >= 3 || y < 0 || y >= 3 {
+		return false
+	}
+	if board.get(x, y) != "-" {
+		return false
+	}
+	return true
+}
+
+const (
+	player1 = "o"
+	player2 = "x"
+)
+
+var board Board
+var currentPlayer string
+
+// ゲーム本体の実装
+func main() {
+	currentPlayer = player1
+	board.tokens = []int{0, 0, 0, 0, 0, 0, 0, 0, 0}
+
+	for {
+		fmt.Printf("Player %d: Input (x,y) ", getPlayerNumber(currentPlayer))
+		var x, y int
+		fmt.Scanf("%d,%d\n", &x, &y)
+
+		if !validMove(x, y) {
+			fmt.Println("Invalid move, try again.")
+			continue
+		}
+		board.put(x, y, currentPlayer)
+
+		if board.check() == "yes" {
+
+			fmt.Printf("Player %d won\n", getPlayerNumber(currentPlayer))
+			break
+		}
+		board.print()
+		switchPlayer()
+	}
+}
